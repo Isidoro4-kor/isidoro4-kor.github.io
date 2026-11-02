@@ -64,7 +64,7 @@
   .todo{color:var(--amber)}
   .pending{color:var(--dim)}
   .note{color:var(--dim); font-size:13px; margin:0 0 16px}
-  .note.team{margin:14px 0 0; color:var(--cyan)}
+  .team{color:var(--dim); font-size:12px; white-space:nowrap}
   footer{margin-top:72px; color:var(--dim); font-size:12px; border-top:1px solid var(--line); padding-top:16px}
   @media (max-width:640px){
     h1{font-size:28px} h1 .kr{display:block; margin-top:4px}
@@ -115,25 +115,25 @@
       <thead><tr><th>CVE</th><th>유형</th><th>요약</th><th>상태</th></tr></thead>
       <tbody>
         <tr class="pending">
-          <td class="id">CVE-2025-56810 (Team.SeaBugs)</td>
+          <td class="id">CVE-2025-56810 <span class="team">(Team.SeaBugs)</span></td>
           <td>Path Traversal</td>
           <td>플러그인 임포트 과정의 경로 조작으로 임의 파일 읽기 및 덮어쓰기</td>
           <td>Reserved</td>
         </tr>
         <tr class="pending">
-          <td class="id">CVE-2025-56812 (Team.SeaBugs)</td>
+          <td class="id">CVE-2025-56812 <span class="team">(Team.SeaBugs)</span></td>
           <td>Code Injection</td>
           <td>플러그인 로더가 서명·무결성 검증 없이 라이브러리를 로드하여 임의 코드 실행</td>
           <td>Reserved</td>
         </tr>
         <tr class="pending">
-          <td class="id">CVE-2025-56813 (Team.SeaBugs)</td>
+          <td class="id">CVE-2025-56813 <span class="team">(Team.SeaBugs)</span></td>
           <td>Heap Overflow</td>
           <td>WMM 플러그인의 .COF 처리 중 힙 버퍼 오버플로우 (DoS 및 RCE 가능성)</td>
           <td>Reserved</td>
         </tr>
         <tr>
-          <td class="id"><a href="https://www.cve.org/CVERecord?id=CVE-2025-56814">CVE-2025-56814 (Team.SeaBugs)</a></td>
+          <td class="id"><a href="https://www.cve.org/CVERecord?id=CVE-2025-56814">CVE-2025-56814</a> <span class="team">(Team.SeaBugs)</span></td>
           <td>Code Injection<br><span class="meta">CWE-77</span></td>
           <td>Launcher 플러그인의 wxExecute() 사용으로 명령 주입을 통한 임의 코드 실행</td>
           <td>Published</td>
@@ -146,13 +146,13 @@
       <thead><tr><th>CVE</th><th>유형</th><th>요약</th><th>상태</th></tr></thead>
       <tbody>
         <tr>
-          <td class="id"><a href="https://www.cve.org/CVERecord?id=CVE-2025-61037">CVE-2025-61037 (Team.SeaBugs)</a></td>
+          <td class="id"><a href="https://www.cve.org/CVERecord?id=CVE-2025-61037">CVE-2025-61037</a> <span class="team">(Team.SeaBugs)</span></td>
           <td>TOCTOU Race<br><span class="meta">CWE-367</span></td>
           <td>regService가 reparse point 검사 없이 고정 경로에 파일을 생성하는 점을 이용한 SYSTEM 권한 상승</td>
           <td>Published</td>
         </tr>
         <tr>
-          <td class="id"><a href="https://www.cve.org/CVERecord?id=CVE-2025-64699">CVE-2025-64699 (Team.SeaBugs)</a></td>
+          <td class="id"><a href="https://www.cve.org/CVERecord?id=CVE-2025-64699">CVE-2025-64699</a> <span class="team">(Team.SeaBugs)</span></td>
           <td>Null DACL<br><span class="meta">CWE-732</span></td>
           <td>DACL이 설정되지 않은 보안 설명자를 디바이스 객체에 적용하여 비인가 raw disk 접근 및 권한 상승 가능</td>
           <td>Published</td>
@@ -267,6 +267,12 @@
           <td>Dreamhack CTF</td>
           <td>9위</td>
           <td>Isidoro4</td>
+        </tr>
+        <tr>
+          <td class="date">2026.10.23</td>
+          <td>HITCON CTF 2026</td>
+          <td>5위</td>
+          <td>Korea Hacking Club Alliance</td>
         </tr>
       </tbody>
     </table>
