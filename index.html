@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Isidoro4 — Vulnerability Researcher</title>
-<meta name="description" content="Isidoro4 (진형권) — 정보보호 전공, BoB 15기 취약점분석, 바이너리·리버싱·커널 취약점 연구">
+<title>HyeongGwon Jin (Isidoro4) — Vulnerability Researcher</title>
+<meta name="description" content="진형권 (Isidoro4) — 세종대 정보보호학과. 해양 항법 시스템(ECDIS/NMEA)·임베디드 취약점 분석, CVE, BoB 15기 취약점분석 트랙.">
 <style>
   :root{
     --bg:#0b0f14; --panel:#111823; --line:#1f2a3a;
@@ -20,34 +20,42 @@
   }
   a{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--cyan)}
   a:hover{color:var(--green); border-bottom-color:var(--green)}
-  .wrap{max-width:880px; margin:0 auto; padding:48px 20px 80px}
+  .wrap{max-width:900px; margin:0 auto; padding:48px 20px 80px}
   nav{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:40px; font-size:13px; color:var(--dim)}
   nav a{border:0; color:var(--dim)}
   nav a:hover{color:var(--green)}
   .prompt{color:var(--green)}
   .prompt .host{color:var(--cyan)}
-  h1{font-size:34px; margin:6px 0 4px; letter-spacing:-.5px}
+  h1{font-size:34px; margin:6px 0 2px; letter-spacing:-.5px}
+  h1 .kr{font-size:22px; color:var(--dim); margin-left:10px; letter-spacing:0}
   .cursor{display:inline-block; width:10px; height:1.1em; background:var(--green); vertical-align:-3px; animation:blink 1s steps(1) infinite}
   @keyframes blink{50%{opacity:0}}
-  .tagline{color:var(--dim); margin:0 0 8px}
+  .tagline{color:var(--dim); margin:0}
   section{margin-top:52px}
   h2{font-size:16px; font-weight:600; color:var(--green); margin:0 0 14px}
   h2::before{content:"$ "; color:var(--dim)}
-  h3.group{font-size:13px; font-weight:500; color:var(--dim); margin:22px 0 10px; text-transform:uppercase; letter-spacing:.08em}
+  h3.group{font-size:13px; font-weight:500; color:var(--dim); margin:24px 0 10px; text-transform:uppercase; letter-spacing:.08em}
   h3.group:first-of-type{margin-top:0}
   .card{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:15px 17px; margin-bottom:10px}
   .card h4{margin:0 0 2px; font-size:15px; font-weight:600}
   .meta{color:var(--dim); font-size:13px}
   .tag{display:inline-block; font-size:12px; color:var(--amber); border:1px solid #3a3320; border-radius:4px; padding:0 6px; margin:8px 6px 0 0}
   ul{padding-left:20px; margin:8px 0 0}
-  li{margin:2px 0}
+  li{margin:3px 0}
+  ol.pubs{padding-left:22px; margin:0}
+  ol.pubs li{margin:0 0 12px}
   table{width:100%; border-collapse:collapse; font-size:14px}
-  th,td{text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top}
+  th,td{text-align:left; padding:9px 10px; border-bottom:1px solid var(--line); vertical-align:top}
   th{color:var(--dim); font-weight:500; white-space:nowrap}
+  td.id{white-space:nowrap}
   .todo{color:var(--amber)}
-  .note{color:var(--dim); font-size:13px; margin:0 0 12px}
+  .pending{color:var(--dim)}
+  .note{color:var(--dim); font-size:13px; margin:0 0 14px}
   footer{margin-top:64px; color:var(--dim); font-size:12px; border-top:1px solid var(--line); padding-top:16px}
-  @media (max-width:600px){ h1{font-size:26px} th:last-child,td:last-child{display:none} }
+  @media (max-width:640px){
+    h1{font-size:25px} h1 .kr{display:block; margin:4px 0 0}
+    th:nth-child(4),td:nth-child(4){display:none}
+  }
   @media (prefers-reduced-motion:reduce){ .cursor{animation:none} html{scroll-behavior:auto} }
 </style>
 </head>
@@ -61,43 +69,86 @@
     <a href="#papers">papers</a>
     <a href="#talks">talks</a>
     <a href="#awards">awards</a>
-    <a href="#ctf">ctf</a>
-    <a href="#experience">experience</a>
     <a href="#education">education</a>
+    <a href="#experience">experience</a>
+    <a href="#ctf">ctf</a>
     <a href="#contact">contact</a>
   </nav>
 
   <header>
     <div class="prompt"><span class="host">isidoro4@sejong</span>:~$ whoami</div>
-    <h1>Isidoro4<span class="cursor"></span></h1>
-    <p class="tagline">진형권 · Vulnerability Researcher</p>
+    <h1>HyeongGwon Jin<span class="kr">진형권</span><span class="cursor"></span></h1>
+    <p class="tagline">Vulnerability Researcher · Maritime &amp; Embedded Systems</p>
   </header>
 
   <!-- ============ 소개 ============ -->
   <section id="about">
     <h2>about</h2>
     <p>
-      세종대학교 정보보호학과 3학년. 중학생 때부터 공격 보안(offensive security)을 파 왔고,
-      바이너리 익스플로잇, 리버스 엔지니어링, 디지털 포렌식, 취약점 연구를 주로 합니다.
-      현재는 리눅스 커널(파일시스템 중심) 퍼징과 LLM을 활용한 취약점 분석 운용을
-      장기 주력 분야로 공부하고 있습니다.
+      세종대학교 정보보호학과에 재학 중이며, 리버싱·pwnable·임베디드를 중심으로 한
+      오펜시브 보안을 공부하고 있습니다.
+    </p>
+    <p>
+      지금까지의 연구는 주로 <strong>해양 항법 시스템</strong>에 집중돼 있습니다.
+      ECDIS와 NMEA, S-100/S-52 표준을 대상으로 위협 모델링부터 실제 바이너리 분석까지
+      진행했고, 그 과정에서 OpenCPN과 SevenCs ORCA G2에서 취약점 6건을 발견해 CVE 번호를 발급받았습니다.
+      현재는 리눅스 커널(파일시스템) 퍼징과 LLM 에이전트 툴 체인 취약점 분석으로
+      범위를 넓히고 있습니다.
     </p>
   </section>
 
   <!-- ============ CVE ============ -->
   <section id="cve">
     <h2>cve</h2>
-    <p class="note">공개된 CVE만 기재합니다. 미공개 제보 건은 포함하지 않았습니다.</p>
+    <p class="note">MITRE에 제보하여 번호를 발급받은 취약점 6건. 공개된 항목은 CVE 레코드로 연결됩니다.</p>
+
+    <h3 class="group">OpenCPN v5.12.0</h3>
     <table>
-      <thead><tr><th>CVE</th><th>대상</th><th>유형</th><th>연도</th></tr></thead>
+      <thead><tr><th>CVE</th><th>유형</th><th>요약</th><th>상태</th></tr></thead>
       <tbody>
-        <tr><td class="todo">CVE-XXXX-XXXXX</td><td class="todo">제품명 / 범주</td><td class="todo">예: stack overflow</td><td class="todo">2025</td></tr>
-        <tr><td class="todo">CVE-XXXX-XXXXX</td><td class="todo"></td><td class="todo"></td><td class="todo"></td></tr>
-        <tr><td class="todo">CVE-XXXX-XXXXX</td><td class="todo"></td><td class="todo"></td><td class="todo"></td></tr>
-        <tr><td class="todo">CVE-XXXX-XXXXX</td><td class="todo"></td><td class="todo"></td><td class="todo"></td></tr>
-        <tr><td class="todo">CVE-XXXX-XXXXX</td><td class="todo"></td><td class="todo"></td><td class="todo"></td></tr>
-        <tr><td class="todo">CVE-XXXX-XXXXX</td><td class="todo"></td><td class="todo"></td><td class="todo"></td></tr>
-        <tr><td class="todo">CVE-XXXX-XXXXX</td><td class="todo"></td><td class="todo"></td><td class="todo"></td></tr>
+        <tr class="pending">
+          <td class="id">CVE-2025-56810</td>
+          <td>Path Traversal</td>
+          <td>플러그인 임포트 과정의 경로 조작으로 임의 파일 읽기 및 덮어쓰기</td>
+          <td>Reserved</td>
+        </tr>
+        <tr class="pending">
+          <td class="id">CVE-2025-56812</td>
+          <td>Code Injection</td>
+          <td>플러그인 로더가 서명·무결성 검증 없이 라이브러리를 로드하여 임의 코드 실행</td>
+          <td>Reserved</td>
+        </tr>
+        <tr class="pending">
+          <td class="id">CVE-2025-56813</td>
+          <td>Heap Overflow</td>
+          <td>WMM 플러그인의 .COF 처리 중 힙 버퍼 오버플로우 (DoS 및 RCE 가능성)</td>
+          <td>Reserved</td>
+        </tr>
+        <tr>
+          <td class="id"><a href="https://www.cve.org/CVERecord?id=CVE-2025-56814">CVE-2025-56814</a></td>
+          <td>Code Injection<br><span class="meta">CWE-77</span></td>
+          <td>Launcher 플러그인의 wxExecute() 사용으로 명령 주입을 통한 임의 코드 실행</td>
+          <td>Published</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="group">SevenCs ORCA G2 2.0.1.35 <span class="meta">(EC2007 Kernel v5.22)</span></h3>
+    <table>
+      <thead><tr><th>CVE</th><th>유형</th><th>요약</th><th>상태</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="id"><a href="https://www.cve.org/CVERecord?id=CVE-2025-61037">CVE-2025-61037</a></td>
+          <td>TOCTOU Race<br><span class="meta">CWE-367</span></td>
+          <td>regService가 reparse point 검사 없이 고정 경로에 파일을 생성하는 점을 이용한 SYSTEM 권한 상승</td>
+          <td>Published</td>
+        </tr>
+        <tr>
+          <td class="id"><a href="https://www.cve.org/CVERecord?id=CVE-2025-64699">CVE-2025-64699</a></td>
+          <td>Null DACL<br><span class="meta">CWE-732</span></td>
+          <td>DACL이 설정되지 않은 보안 설명자를 디바이스 객체에 적용하여 비인가 raw disk 접근 및 권한 상승 가능</td>
+          <td>Published</td>
+        </tr>
       </tbody>
     </table>
   </section>
@@ -107,71 +158,86 @@
     <h2>research &amp; projects</h2>
 
     <div class="card">
+      <h4>선박 기자재 탑재 SW 정보 수집 및 취약점 분석</h4>
+      <div class="meta">2025.05 — · 화이트햇스쿨 3기</div>
+      <ul>
+        <li>선박 기자재에 탑재되는 항법 소프트웨어를 수집하고 공격면을 분석</li>
+        <li>OpenCPN, SevenCs ORCA G2 등에서 취약점 발견 → CVE 등록</li>
+      </ul>
+      <span class="tag">maritime</span><span class="tag">binary analysis</span><span class="tag">ECDIS</span>
+    </div>
+
+    <div class="card">
       <h4>LLM Tool Chain 취약점 분석</h4>
-      <div class="meta">BoB 15기 · 취약점분석 트랙 · 팀 AIddite</div>
+      <div class="meta">2026 — · BoB 15기 취약점분석 트랙 · 팀 AIddite</div>
       <ul>
         <li>LLM 에이전트의 툴 체인 구조에서 발생하는 취약점 분석</li>
         <li class="todo">주요 발견 / 결과물 한두 줄</li>
       </ul>
-      <span class="tag">LLM agents</span><span class="tag">tool chain</span><span class="tag">vulnerability analysis</span>
+      <span class="tag">LLM agents</span><span class="tag">tool chain</span>
     </div>
 
     <div class="card">
       <h4>LLM 보안 에이전트 Jailbreak / Defense 프레임워크</h4>
       <div class="meta">교내 해킹 동아리 · PM</div>
       <ul>
-        <li>LLM 기반 보안 에이전트를 대상으로 한 jailbreak 시나리오 도출 및 방어 프레임워크 설계</li>
+        <li>LLM 기반 보안 에이전트 대상 jailbreak 시나리오 도출 및 방어 프레임워크 설계</li>
       </ul>
       <span class="tag">LLM security</span><span class="tag">jailbreak</span><span class="tag">defense</span>
     </div>
 
     <div class="card">
-      <h4>선박 소프트웨어 취약점 분석</h4>
-      <div class="meta">화이트햇스쿨 · CVE 7건 획득</div>
-      <ul>
-        <li class="todo">분석 대상과 접근 방법 한두 줄</li>
-      </ul>
-      <span class="tag">maritime</span><span class="tag">binary analysis</span>
+      <h4>Embedded Insight</h4>
+      <div class="meta">2025.12</div>
+      <ul><li class="todo">프로젝트 내용 한두 줄</li></ul>
+      <span class="tag">embedded</span>
+    </div>
+
+    <div class="card">
+      <h4>PCAP Programming</h4>
+      <div class="meta">2025.03</div>
+      <ul><li class="todo">프로젝트 내용 한두 줄</li></ul>
+      <span class="tag">network</span>
     </div>
 
     <div class="card">
       <h4>리눅스 커널 파일시스템 퍼징</h4>
       <div class="meta">진행 중 · 개인 연구</div>
-      <ul>
-        <li class="todo">타깃 서브시스템, 퍼저 구성, 현재 결과</li>
-      </ul>
+      <ul><li class="todo">타깃 서브시스템, 퍼저 구성, 현재 진행 상황</li></ul>
       <span class="tag">linux kernel</span><span class="tag">fuzzing</span><span class="tag">filesystem</span>
-    </div>
-
-    <div class="card">
-      <h4 class="todo">(프로젝트 추가)</h4>
-      <div class="meta">기간 · 역할</div>
-      <ul><li>요약 한두 줄 + 저장소/라이트업 링크</li></ul>
     </div>
   </section>
 
   <!-- ============ 논문 ============ -->
   <section id="papers">
     <h2>publications</h2>
-    <div class="card">
-      <h4 class="todo">논문 제목</h4>
-      <div class="meta"><span class="todo">공저자</span> · <span class="todo">학회/저널명</span> · <span class="todo">2026</span></div>
-      <ul><li class="todo">한 줄 요약 · <a href="#">PDF</a> / <a href="#">DOI</a></li></ul>
-    </div>
-    <p class="note todo">※ 아직 없으면 이 섹션과 nav의 papers 링크를 통째로 지우세요. 빈 섹션은 없는 것보다 나쁩니다.</p>
-  </section>
 
-  <!-- ============ 발표 ============ -->
+    <h3 class="group">2025 한국정보보호학회 하계학술대회 (CISC-S&apos;25)</h3>
+    <ol class="pubs">
+      <li>S-100 표준 적용에 따른 ECDIS GPS 신호 조작 위협 시나리오 분석: STRIDE 모델 기반 접근</li>
+      <li>S-100 표준 적용에 따른 ECDIS의 IP 인터페이스 사이버 위협 평가 방법론 연구</li>
+    </ol>
+
+    <h3 class="group">2025 한국정보보호학회 영남지부 학술대회</h3>
+    <ol class="pubs">
+      <li>ECDIS 차트 삭제 업데이트의 오용 가능성과 절차적 대응 방안 연구</li>
+    </ol>
+
+    <h3 class="group">WISA <span class="todo">(연도 확인)</span></h3>
+    <ol class="pubs">
+      <li>NMEA Under Siege: Dynamic Flooding Attacks and Defenses</li>
+      <li>Visual Tampering in S-52: Threats and Protections</li>
+    </ol>
+  </section>
   <section id="talks">
     <h2>talks</h2>
     <div class="card">
-      <h4 class="todo">발표 제목</h4>
-      <div class="meta"><span class="todo">행사명</span> · <span class="todo">2026-00-00</span></div>
-      <ul><li class="todo">슬라이드 / 영상 링크</li></ul>
+      <h4>NMEA Under Siege: Dynamic Flooding Attacks and Defenses</h4>
+      <div class="meta">WISA · <span class="todo">연도</span></div>
     </div>
     <div class="card">
-      <h4 class="todo">(발표 추가)</h4>
-      <div class="meta">세미나, 동아리 발표, 컨퍼런스 모두 포함</div>
+      <h4>Visual Tampering in S-52: Threats and Protections</h4>
+      <div class="meta">WISA · <span class="todo">연도</span></div>
     </div>
   </section>
 
@@ -181,28 +247,45 @@
     <table>
       <thead><tr><th>연도</th><th>수상</th><th>주최</th><th>비고</th></tr></thead>
       <tbody>
-        <tr><td class="todo">2026</td><td class="todo">대회명 · 순위</td><td class="todo">주최기관</td><td class="todo">개인/팀</td></tr>
-        <tr><td class="todo"></td><td class="todo"></td><td class="todo"></td><td class="todo"></td></tr>
+        <tr>
+          <td>2025.11</td>
+          <td>2025 SW 코딩 경시대회 3위</td>
+          <td class="todo">주최기관</td>
+          <td class="todo">개인/팀</td>
+        </tr>
+        <tr>
+          <td>2025.09</td>
+          <td>우수 프로젝트</td>
+          <td>화이트햇스쿨 3기</td>
+          <td class="todo">팀</td>
+        </tr>
       </tbody>
     </table>
   </section>
 
-  <!-- ============ CTF ============ -->
-  <section id="ctf">
-    <h2>ctf</h2>
+  <!-- ============ 학교 / 교육 ============ -->
+  <section id="education">
+    <h2>education</h2>
+
+    <h3 class="group">학위</h3>
     <div class="card">
-      <h4>Bl4ck_Fl4g</h4>
-      <div class="meta">팀 멤버</div>
-      <ul><li class="todo">주요 대회 성적 (대회명 · 순위 · 연도)</li></ul>
+      <h4>세종대학교 정보보호학과</h4>
+      <div class="meta">2024.03 — 재학 중</div>
     </div>
-    <table>
-      <thead><tr><th>연도</th><th>대회</th><th>순위</th><th>팀</th></tr></thead>
-      <tbody>
-        <tr><td class="todo">2026</td><td class="todo">대회명</td><td class="todo">00위 / 000팀</td><td class="todo">Bl4ck_Fl4g</td></tr>
-        <tr><td class="todo"></td><td class="todo"></td><td class="todo"></td><td class="todo"></td></tr>
-      </tbody>
-    </table>
-    <p class="note">라이트업: <span class="todo">블로그 링크</span></p>
+
+    <h3 class="group">교육 과정</h3>
+    <div class="card">
+      <h4>BoB (Best of the Best) 15기</h4>
+      <div class="meta">취약점분석 트랙 · KITRI · <span class="todo">기간</span></div>
+    </div>
+    <div class="card">
+      <h4>화이트햇스쿨 3기</h4>
+      <div class="meta">2025.03 — 2025.09 · 수료</div>
+    </div>
+    <div class="card">
+      <h4>Security Factorial</h4>
+      <div class="meta">2024.07 — 현재</div>
+    </div>
   </section>
 
   <!-- ============ 경력 ============ -->
@@ -213,54 +296,31 @@
       <div class="meta">세종대학교 정보보호학과 · <span class="todo">기간</span></div>
       <ul><li class="todo">담당 과목 / 역할</li></ul>
     </div>
-    <div class="card">
-      <h4 class="todo">(인턴 · 외주 · 기타 경력 추가)</h4>
-      <div class="meta">기관 · 기간 · 직함</div>
-    </div>
   </section>
 
-  <!-- ============ 학교 / 교육 ============ -->
-  <section id="education">
-    <h2>education</h2>
-
-    <h3 class="group">학위</h3>
+  <!-- ============ CTF ============ -->
+  <section id="ctf">
+    <h2>ctf</h2>
     <div class="card">
-      <h4>세종대학교 정보보호학과</h4>
-      <div class="meta">학사 과정 3학년 · 재학 중</div>
+      <h4>Bl4ck_Fl4g</h4>
+      <div class="meta">팀 멤버</div>
+      <ul><li class="todo">주요 대회 성적 (대회명 · 순위 · 연도)</li></ul>
     </div>
-    <div class="card">
-      <h4>공군사관학교</h4>
-      <div class="meta"><span class="todo">기간</span> · 중퇴 후 현 전공으로 진학</div>
-    </div>
-
-    <h3 class="group">교육 과정</h3>
-    <div class="card">
-      <h4>BoB (Best of the Best) 15기</h4>
-      <div class="meta">취약점분석 트랙 · KITRI</div>
-    </div>
-    <div class="card">
-      <h4>화이트햇스쿨</h4>
-      <div class="meta">수료 · 선박 소프트웨어 취약점 분석으로 CVE 7건</div>
-    </div>
-    <div class="card">
-      <h4 class="todo">(기타 교육 추가)</h4>
-      <div class="meta">과정명 · 기관 · 연도</div>
-    </div>
+    <p class="note todo">※ 성적이 아직 정리 안 됐으면 이 섹션과 nav의 ctf 링크를 지우세요.</p>
   </section>
 
   <!-- ============ 연락처 ============ -->
   <section id="contact">
     <h2>contact</h2>
     <ul>
-      <li>GitHub: <a class="todo" href="https://github.com/">github.com/아이디</a></li>
-      <li>Email: <span class="todo">your@email</span></li>
-      <li>Blog / Writeups: <span class="todo">링크</span></li>
-      <li>PGP: <span class="todo">키 지문 (선택)</span></li>
+      <li>GitHub: <a href="https://github.com/Isidoro4-kor">@Isidoro4-kor</a></li>
+      <li>Blog: <a href="https://isidoro4.tistory.com">isidoro4.tistory.com</a></li>
+      <li>Email: <a href="mailto:jhg200404@hanmail.net">jhg200404@hanmail.net</a></li>
     </ul>
   </section>
 
   <footer>
-    &copy; 2026 Isidoro4 · static page, no trackers.
+    &copy; 2026 HyeongGwon Jin · static page, no trackers.
   </footer>
 
 </div>
