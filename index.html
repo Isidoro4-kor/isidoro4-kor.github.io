@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Isidoro4 (진형권) — Vulnerability Researcher</title>
-<meta name="description" content="Isidoro4 (진형권) — 세종대 정보보호학과. 해양 항법 시스템(ECDIS/NMEA)·임베디드 취약점 분석, CVE 6건, BoB 15기 취약점분석 트랙.">
+<meta name="description" content="Isidoro4 (진형권) — 세종대 정보보호학과. 해양 항법 시스템(ECDIS/NMEA) 취약점 분석, CVE 6건, LLM 에이전트 보안 연구, BoB 15기 취약점분석 트랙.">
 <style>
   :root{
     --bg:#0b0f14; --panel:#111823; --line:#1f2a3a;
@@ -64,6 +64,7 @@
   .todo{color:var(--amber)}
   .pending{color:var(--dim)}
   .note{color:var(--dim); font-size:13px; margin:0 0 16px}
+  .note.team{margin:14px 0 0; color:var(--cyan)}
   footer{margin-top:72px; color:var(--dim); font-size:12px; border-top:1px solid var(--line); padding-top:16px}
   @media (max-width:640px){
     h1{font-size:28px} h1 .kr{display:block; margin-top:4px}
@@ -91,57 +92,48 @@
   <header>
     <div class="prompt"><span class="host">isidoro4@sejong</span>:~$ whoami</div>
     <h1>Isidoro4 <span class="kr">(진형권)</span><span class="cursor"></span></h1>
-    <p class="tagline">Vulnerability Researcher · Maritime &amp; Embedded Systems</p>
+    <p class="tagline">Vulnerability Researcher · AI Systems Security · Drummer</p>
   </header>
 
   <!-- ============ 소개 ============ -->
   <section id="about">
     <h2>about</h2>
     <p>
-      세종대학교 정보보호학과에 재학 중이며, 리버싱·pwnable·임베디드를 중심으로 한
-      오펜시브 보안을 공부하고 있습니다.
+      세종대학교 정보보호학과에 재학 중이며, 취약점 분석 및 오펜시브 보안을 공부하고 있습니다.
     </p>
     <p>
-      지금까지의 연구는 주로 <strong>해양 항법 시스템</strong>에 집중돼 있습니다.
-      ECDIS와 NMEA, S-100/S-52 표준을 대상으로 위협 모델링부터 실제 바이너리 분석까지
-      진행했고, 그 과정에서 OpenCPN과 SevenCs ORCA G2에서 취약점 6건을 발견해
-      CVE 번호를 발급받았습니다. 현재는 항공 SW와 리눅스 커널 파일시스템 퍼징,
-      LLM 에이전트 툴 체인 취약점 분석으로 범위를 넓히고 있습니다.
+      현재는 OT 분야와 리눅스 커널 파일시스템 퍼징,
+      LLM 에이전트 툴 체인 취약점 분석 등 다양한 범위를 공부하고 있습니다.
     </p>
   </section>
 
   <!-- ============ CVE ============ -->
   <section id="cve">
     <h2>cve</h2>
-    <p class="note">
-      MITRE에 제보하여 번호를 발급받은 취약점 6건. <strong>팀 SeaBugs</strong>에서 공동 수행했습니다.
-      공개된 항목은 CVE 레코드로 연결됩니다.
-    </p>
-
     <h3 class="group">OpenCPN v5.12.0</h3>
     <table>
       <thead><tr><th>CVE</th><th>유형</th><th>요약</th><th>상태</th></tr></thead>
       <tbody>
         <tr class="pending">
-          <td class="id">CVE-2025-56810</td>
+          <td class="id">CVE-2025-56810 (Team.SeaBugs)</td>
           <td>Path Traversal</td>
           <td>플러그인 임포트 과정의 경로 조작으로 임의 파일 읽기 및 덮어쓰기</td>
           <td>Reserved</td>
         </tr>
         <tr class="pending">
-          <td class="id">CVE-2025-56812</td>
+          <td class="id">CVE-2025-56812 (Team.SeaBugs)</td>
           <td>Code Injection</td>
           <td>플러그인 로더가 서명·무결성 검증 없이 라이브러리를 로드하여 임의 코드 실행</td>
           <td>Reserved</td>
         </tr>
         <tr class="pending">
-          <td class="id">CVE-2025-56813</td>
+          <td class="id">CVE-2025-56813 (Team.SeaBugs)</td>
           <td>Heap Overflow</td>
           <td>WMM 플러그인의 .COF 처리 중 힙 버퍼 오버플로우 (DoS 및 RCE 가능성)</td>
           <td>Reserved</td>
         </tr>
         <tr>
-          <td class="id"><a href="https://www.cve.org/CVERecord?id=CVE-2025-56814">CVE-2025-56814</a></td>
+          <td class="id"><a href="https://www.cve.org/CVERecord?id=CVE-2025-56814">CVE-2025-56814 (Team.SeaBugs)</a></td>
           <td>Code Injection<br><span class="meta">CWE-77</span></td>
           <td>Launcher 플러그인의 wxExecute() 사용으로 명령 주입을 통한 임의 코드 실행</td>
           <td>Published</td>
@@ -154,19 +146,20 @@
       <thead><tr><th>CVE</th><th>유형</th><th>요약</th><th>상태</th></tr></thead>
       <tbody>
         <tr>
-          <td class="id"><a href="https://www.cve.org/CVERecord?id=CVE-2025-61037">CVE-2025-61037</a></td>
+          <td class="id"><a href="https://www.cve.org/CVERecord?id=CVE-2025-61037">CVE-2025-61037 (Team.SeaBugs)</a></td>
           <td>TOCTOU Race<br><span class="meta">CWE-367</span></td>
           <td>regService가 reparse point 검사 없이 고정 경로에 파일을 생성하는 점을 이용한 SYSTEM 권한 상승</td>
           <td>Published</td>
         </tr>
         <tr>
-          <td class="id"><a href="https://www.cve.org/CVERecord?id=CVE-2025-64699">CVE-2025-64699</a></td>
+          <td class="id"><a href="https://www.cve.org/CVERecord?id=CVE-2025-64699">CVE-2025-64699 (Team.SeaBugs)</a></td>
           <td>Null DACL<br><span class="meta">CWE-732</span></td>
           <td>DACL이 설정되지 않은 보안 설명자를 디바이스 객체에 적용하여 비인가 raw disk 접근 및 권한 상승 가능</td>
           <td>Published</td>
         </tr>
       </tbody>
     </table>
+
   </section>
 
   <!-- ============ 프로젝트 / 연구 ============ -->
@@ -175,7 +168,7 @@
 
     <div class="card">
       <h4>선박 기자재 탑재 SW 정보 수집 및 취약점 분석</h4>
-      <div class="meta">2025.05 — · 화이트햇스쿨 3기 · 팀 SeaBugs</div>
+      <div class="meta">2025.05 — 2025.08 · 화이트햇스쿨 3기 · 팀 SeaBugs</div>
       <ul>
         <li>선박 기자재에 탑재되는 항법 소프트웨어를 수집하고 공격면을 분석</li>
         <li>OpenCPN, SevenCs ORCA G2에서 취약점 6건 발견 → CVE 번호 발급</li>
@@ -185,7 +178,7 @@
 
     <div class="card">
       <h4>LLM 보안 에이전트 Jailbreak / Defense 프레임워크</h4>
-      <div class="meta">Security Factorial · PM</div>
+      <div class="meta">2026.05 — 2026.11 (예정) · Security Factorial · PM</div>
       <ul>
         <li>LLM 기반 보안 에이전트 대상 jailbreak 시나리오 도출 및 방어 프레임워크 설계</li>
       </ul>
@@ -194,25 +187,22 @@
 
     <div class="card">
       <h4>LLM Tool Chain 취약점 분석</h4>
-      <div class="meta">2026 — · BoB 15기 취약점분석 트랙 · 팀 AIddite</div>
+      <div class="meta">2026.09 — 2026.12 (예정) · BoB 15기 취약점분석 트랙 · 팀 AIddite</div>
       <ul>
         <li>LLM 에이전트의 툴 체인 구조에서 발생하는 취약점 분석</li>
-        <li class="todo">주요 발견 / 결과물 한두 줄</li>
       </ul>
       <span class="tag">LLM agents</span><span class="tag">tool chain</span>
     </div>
 
     <div class="card">
       <h4>항공 SW 조사 및 취약점 분석</h4>
-      <div class="meta">개인 프로젝트</div>
-      <ul><li class="todo">대상 소프트웨어, 분석 범위, 현재 진행 상황</li></ul>
+      <div class="meta">개인 프로젝트 · 진행 중</div>
       <span class="tag">avionics</span><span class="tag">embedded</span>
     </div>
 
     <div class="card">
       <h4>리눅스 커널 파일시스템 퍼징</h4>
       <div class="meta">개인 프로젝트 · 진행 중</div>
-      <ul><li class="todo">타깃 서브시스템, 퍼저 구성, 현재 진행 상황</li></ul>
       <span class="tag">linux kernel</span><span class="tag">fuzzing</span><span class="tag">filesystem</span>
     </div>
   </section>
@@ -243,7 +233,7 @@
   <section id="talks">
     <h2>talks</h2>
     <div class="card">
-      <h4>쑥과 마늘 그리고 논문먹으며 사람되기</h4>
+      <h4>쑥과 마늘 그리고 논문 먹으며 사람되기</h4>
       <div class="meta">SCIF 컨퍼런스 · 2026.04.04</div>
     </div>
   </section>
@@ -264,19 +254,19 @@
           <td class="date">2025.11</td>
           <td>2025 SW 코딩 경시대회</td>
           <td>3위</td>
-          <td class="todo">주최 / 개인·팀</td>
+          <td>Isidoro4</td>
         </tr>
         <tr>
           <td class="date">2026.09.11</td>
           <td>K17 CTF</td>
           <td>28위</td>
-          <td class="todo">개인 / 팀</td>
+          <td>Isidoro4</td>
         </tr>
         <tr>
           <td class="date">2026.09.19</td>
           <td>Dreamhack CTF</td>
           <td>9위</td>
-          <td class="todo">개인 / 팀</td>
+          <td>Isidoro4</td>
         </tr>
       </tbody>
     </table>
@@ -286,24 +276,32 @@
   <section id="education">
     <h2>education</h2>
 
-    <h3 class="group">학위</h3>
+    <h3 class="group">학교</h3>
+    <div class="card">
+      <h4>대전 지족고등학교</h4>
+      <div class="meta">2020.03 — 2023.02 · 졸업</div>
+    </div>
+    <div class="card">
+      <h4>공군사관학교 75기</h4>
+      <div class="meta">2023 · 자퇴</div>
+    </div>
     <div class="card">
       <h4>세종대학교 정보보호학과</h4>
       <div class="meta">2024.03 — 재학 중</div>
     </div>
 
-    <h3 class="group">교육 과정</h3>
+    <h3 class="group">Organization</h3>
     <div class="card">
       <h4>Security Factorial</h4>
       <div class="meta">2024.07 — 현재</div>
     </div>
     <div class="card">
       <h4>화이트햇스쿨 3기</h4>
-      <div class="meta">2025.03 — 2025.09 · KITRI 운영 · 수료</div>
+      <div class="meta">2025.03 — 2025.09 · KITRI · 수료</div>
     </div>
     <div class="card">
       <h4>BoB (Best of the Best) 15기</h4>
-      <div class="meta">취약점분석 트랙 · KISA 운영 · <span class="todo">기간</span></div>
+      <div class="meta">취약점분석 트랙 · 2026.07 — 2027.02 (예정) · KISA</div>
     </div>
   </section>
 
@@ -313,7 +311,7 @@
     <div class="card">
       <h4>신입생 스터디 멘토</h4>
       <div class="meta">Security Factorial · 2025년 1학기</div>
-      <ul><li>C언어, 포너블 담당</li></ul>
+      <ul><li>C / Pwnable</li></ul>
     </div>
     <div class="card">
       <h4>전공 조교 (TA)</h4>
@@ -328,7 +326,9 @@
     <ul>
       <li>GitHub: <a href="https://github.com/Isidoro4-kor">@Isidoro4-kor</a></li>
       <li>Blog: <a href="https://isidoro4.tistory.com">isidoro4.tistory.com</a></li>
-      <li>Email: <a href="mailto:jhg200404@hanmail.net">jhg200404@hanmail.net</a></li>
+      <li>X: <a href="https://x.com/Isidoro4_kor">@Isidoro4_kor</a></li>
+      <li>Instagram: <a href="https://www.instagram.com/gaengsaeng_isidoro4/">@gaengsaeng_isidoro4</a></li>
+      <li>Email: <a href="mailto:jhg200404@gmail.com">jhg200404@gmail.com</a></li>
     </ul>
   </section>
 
