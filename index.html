@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Isidoro4 — Vulnerability Researcher</title>
+<meta name="description" content="Isidoro4 (진형권) — 정보보호 전공, BoB 15기 취약점분석, 바이너리·리버싱·커널 취약점 연구">
+<style>
+  :root{
+    --bg:#0b0f14; --panel:#111823; --line:#1f2a3a;
+    --fg:#d6e2f0; --dim:#7d8da3; --green:#5af78e; --cyan:#57c7ff; --amber:#ffcc66;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:15px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,"D2Coding","Noto Sans Mono CJK KR",monospace;
+  }
+  a{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--cyan)}
+  a:hover{color:var(--green); border-bottom-color:var(--green)}
+  .wrap{max-width:880px; margin:0 auto; padding:48px 20px 80px}
+  nav{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:40px; font-size:13px; color:var(--dim)}
+  nav a{border:0; color:var(--dim)}
+  nav a:hover{color:var(--green)}
+  .prompt{color:var(--green)}
+  .prompt .host{color:var(--cyan)}
+  h1{font-size:34px; margin:6px 0 4px; letter-spacing:-.5px}
+  .cursor{display:inline-block; width:10px; height:1.1em; background:var(--green); vertical-align:-3px; animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .tagline{color:var(--dim); margin:0 0 8px}
+  section{margin-top:52px}
+  h2{font-size:16px; font-weight:600; color:var(--green); margin:0 0 14px}
+  h2::before{content:"$ "; color:var(--dim)}
+  h3.group{font-size:13px; font-weight:500; color:var(--dim); margin:22px 0 10px; text-transform:uppercase; letter-spacing:.08em}
+  h3.group:first-of-type{margin-top:0}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:15px 17px; margin-bottom:10px}
+  .card h4{margin:0 0 2px; font-size:15px; font-weight:600}
+  .meta{color:var(--dim); font-size:13px}
+  .tag{display:inline-block; font-size:12px; color:var(--amber); border:1px solid #3a3320; border-radius:4px; padding:0 6px; margin:8px 6px 0 0}
+  ul{padding-left:20px; margin:8px 0 0}
+  li{margin:2px 0}
+  table{width:100%; border-collapse:collapse; font-size:14px}
+  th,td{text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{color:var(--dim); font-weight:500; white-space:nowrap}
+  .todo{color:var(--amber)}
+  .note{color:var(--dim); font-size:13px; margin:0 0 12px}
+  footer{margin-top:64px; color:var(--dim); font-size:12px; border-top:1px solid var(--line); padding-top:16px}
+  @media (max-width:600px){ h1{font-size:26px} th:last-child,td:last-child{display:none} }
+  @media (prefers-reduced-motion:reduce){ .cursor{animation:none} html{scroll-behavior:auto} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <a href="#about">about</a>
+    <a href="#cve">cve</a>
+    <a href="#research">research</a>
+    <a href="#papers">papers</a>
+    <a href="#talks">talks</a>
+    <a href="#awards">awards</a>
+    <a href="#ctf">ctf</a>
+    <a href="#experience">experience</a>
+    <a href="#education">education</a>
+    <a href="#contact">contact</a>
+  </nav>
+
+  <header>
+    <div class="prompt"><span class="host">isidoro4@sejong</span>:~$ whoami</div>
+    <h1>Isidoro4<span class="cursor"></span></h1>
+    <p class="tagline">진형권 · Vulnerability Researcher</p>
+  </header>
+
+  <!-- ============ 소개 ============ -->
+  <section id="about">
+    <h2>about</h2>
+    <p>
+      세종대학교 정보보호학과 3학년. 중학생 때부터 공격 보안(offensive security)을 파 왔고,
+      바이너리 익스플로잇, 리버스 엔지니어링, 디지털 포렌식, 취약점 연구를 주로 합니다.
+      현재는 리눅스 커널(파일시스템 중심) 퍼징과 LLM을 활용한 취약점 분석 운용을
+      장기 주력 분야로 공부하고 있습니다.
+    </p>
+  </section>
+
+  <!-- ============ CVE ============ -->
+  <section id="cve">
+    <h2>cve</h2>
+    <p class="note">공개된 CVE만 기재합니다. 미공개 제보 건은 포함하지 않았습니다.</p>
+    <table>
+      <thead><tr><th>CVE</th><th>대상</th><th>유형</th><th>연도</th></tr></thead>
+      <tbody>
+        <tr><td class="todo">CVE-XXXX-XXXXX</td><td class="todo">제품명 / 범주</td><td class="todo">예: stack overflow</td><td class="todo">2025</td></tr>
+        <tr><td class="todo">CVE-XXXX-XXXXX</td><td class="todo"></td><td class="todo"></td><td class="todo"></td></tr>
+        <tr><td class="todo">CVE-XXXX-XXXXX</td><td class="todo"></td><td class="todo"></td><td class="todo"></td></tr>
+        <tr><td class="todo">CVE-XXXX-XXXXX</td><td class="todo"></td><td class="todo"></td><td class="todo"></td></tr>
+        <tr><td class="todo">CVE-XXXX-XXXXX</td><td class="todo"></td><td class="todo"></td><td class="todo"></td></tr>
+        <tr><td class="todo">CVE-XXXX-XXXXX</td><td class="todo"></td><td class="todo"></td><td class="todo"></td></tr>
+        <tr><td class="todo">CVE-XXXX-XXXXX</td><td class="todo"></td><td class="todo"></td><td class="todo"></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ 프로젝트 / 연구 ============ -->
+  <section id="research">
+    <h2>research &amp; projects</h2>
+
+    <div class="card">
+      <h4>LLM Tool Chain 취약점 분석</h4>
+      <div class="meta">BoB 15기 · 취약점분석 트랙 · 팀 AIddite</div>
+      <ul>
+        <li>LLM 에이전트의 툴 체인 구조에서 발생하는 취약점 분석</li>
+        <li class="todo">주요 발견 / 결과물 한두 줄</li>
+      </ul>
+      <span class="tag">LLM agents</span><span class="tag">tool chain</span><span class="tag">vulnerability analysis</span>
+    </div>
+
+    <div class="card">
+      <h4>LLM 보안 에이전트 Jailbreak / Defense 프레임워크</h4>
+      <div class="meta">교내 해킹 동아리 · PM</div>
+      <ul>
+        <li>LLM 기반 보안 에이전트를 대상으로 한 jailbreak 시나리오 도출 및 방어 프레임워크 설계</li>
+      </ul>
+      <span class="tag">LLM security</span><span class="tag">jailbreak</span><span class="tag">defense</span>
+    </div>
+
+    <div class="card">
+      <h4>선박 소프트웨어 취약점 분석</h4>
+      <div class="meta">화이트햇스쿨 · CVE 7건 획득</div>
+      <ul>
+        <li class="todo">분석 대상과 접근 방법 한두 줄</li>
+      </ul>
+      <span class="tag">maritime</span><span class="tag">binary analysis</span>
+    </div>
+
+    <div class="card">
+      <h4>리눅스 커널 파일시스템 퍼징</h4>
+      <div class="meta">진행 중 · 개인 연구</div>
+      <ul>
+        <li class="todo">타깃 서브시스템, 퍼저 구성, 현재 결과</li>
+      </ul>
+      <span class="tag">linux kernel</span><span class="tag">fuzzing</span><span class="tag">filesystem</span>
+    </div>
+
+    <div class="card">
+      <h4 class="todo">(프로젝트 추가)</h4>
+      <div class="meta">기간 · 역할</div>
+      <ul><li>요약 한두 줄 + 저장소/라이트업 링크</li></ul>
+    </div>
+  </section>
+
+  <!-- ============ 논문 ============ -->
+  <section id="papers">
+    <h2>publications</h2>
+    <div class="card">
+      <h4 class="todo">논문 제목</h4>
+      <div class="meta"><span class="todo">공저자</span> · <span class="todo">학회/저널명</span> · <span class="todo">2026</span></div>
+      <ul><li class="todo">한 줄 요약 · <a href="#">PDF</a> / <a href="#">DOI</a></li></ul>
+    </div>
+    <p class="note todo">※ 아직 없으면 이 섹션과 nav의 papers 링크를 통째로 지우세요. 빈 섹션은 없는 것보다 나쁩니다.</p>
+  </section>
+
+  <!-- ============ 발표 ============ -->
+  <section id="talks">
+    <h2>talks</h2>
+    <div class="card">
+      <h4 class="todo">발표 제목</h4>
+      <div class="meta"><span class="todo">행사명</span> · <span class="todo">2026-00-00</span></div>
+      <ul><li class="todo">슬라이드 / 영상 링크</li></ul>
+    </div>
+    <div class="card">
+      <h4 class="todo">(발표 추가)</h4>
+      <div class="meta">세미나, 동아리 발표, 컨퍼런스 모두 포함</div>
+    </div>
+  </section>
+
+  <!-- ============ 상 ============ -->
+  <section id="awards">
+    <h2>awards</h2>
+    <table>
+      <thead><tr><th>연도</th><th>수상</th><th>주최</th><th>비고</th></tr></thead>
+      <tbody>
+        <tr><td class="todo">2026</td><td class="todo">대회명 · 순위</td><td class="todo">주최기관</td><td class="todo">개인/팀</td></tr>
+        <tr><td class="todo"></td><td class="todo"></td><td class="todo"></td><td class="todo"></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ CTF ============ -->
+  <section id="ctf">
+    <h2>ctf</h2>
+    <div class="card">
+      <h4>Bl4ck_Fl4g</h4>
+      <div class="meta">팀 멤버</div>
+      <ul><li class="todo">주요 대회 성적 (대회명 · 순위 · 연도)</li></ul>
+    </div>
+    <table>
+      <thead><tr><th>연도</th><th>대회</th><th>순위</th><th>팀</th></tr></thead>
+      <tbody>
+        <tr><td class="todo">2026</td><td class="todo">대회명</td><td class="todo">00위 / 000팀</td><td class="todo">Bl4ck_Fl4g</td></tr>
+        <tr><td class="todo"></td><td class="todo"></td><td class="todo"></td><td class="todo"></td></tr>
+      </tbody>
+    </table>
+    <p class="note">라이트업: <span class="todo">블로그 링크</span></p>
+  </section>
+
+  <!-- ============ 경력 ============ -->
+  <section id="experience">
+    <h2>experience</h2>
+    <div class="card">
+      <h4>전공 조교 (TA)</h4>
+      <div class="meta">세종대학교 정보보호학과 · <span class="todo">기간</span></div>
+      <ul><li class="todo">담당 과목 / 역할</li></ul>
+    </div>
+    <div class="card">
+      <h4 class="todo">(인턴 · 외주 · 기타 경력 추가)</h4>
+      <div class="meta">기관 · 기간 · 직함</div>
+    </div>
+  </section>
+
+  <!-- ============ 학교 / 교육 ============ -->
+  <section id="education">
+    <h2>education</h2>
+
+    <h3 class="group">학위</h3>
+    <div class="card">
+      <h4>세종대학교 정보보호학과</h4>
+      <div class="meta">학사 과정 3학년 · 재학 중</div>
+    </div>
+    <div class="card">
+      <h4>공군사관학교</h4>
+      <div class="meta"><span class="todo">기간</span> · 중퇴 후 현 전공으로 진학</div>
+    </div>
+
+    <h3 class="group">교육 과정</h3>
+    <div class="card">
+      <h4>BoB (Best of the Best) 15기</h4>
+      <div class="meta">취약점분석 트랙 · KITRI</div>
+    </div>
+    <div class="card">
+      <h4>화이트햇스쿨</h4>
+      <div class="meta">수료 · 선박 소프트웨어 취약점 분석으로 CVE 7건</div>
+    </div>
+    <div class="card">
+      <h4 class="todo">(기타 교육 추가)</h4>
+      <div class="meta">과정명 · 기관 · 연도</div>
+    </div>
+  </section>
+
+  <!-- ============ 연락처 ============ -->
+  <section id="contact">
+    <h2>contact</h2>
+    <ul>
+      <li>GitHub: <a class="todo" href="https://github.com/">github.com/아이디</a></li>
+      <li>Email: <span class="todo">your@email</span></li>
+      <li>Blog / Writeups: <span class="todo">링크</span></li>
+      <li>PGP: <span class="todo">키 지문 (선택)</span></li>
+    </ul>
+  </section>
+
+  <footer>
+    &copy; 2026 Isidoro4 · static page, no trackers.
+  </footer>
+
+</div>
+</body>
+</html>
